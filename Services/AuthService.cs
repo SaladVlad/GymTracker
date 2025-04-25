@@ -45,15 +45,12 @@ namespace GymTrackerAPI.Services
                 Username = dto.Username,
                 PasswordHash = hash,
                 PasswordSalt = salt,
-                Workouts = new List<Workout>()
+                Workouts = []
             };
 
             await _userRepo.CreateUserAsync(user);
             return _jwt.GenerateToken(user);
         }
 
-
     }
-
-
 }

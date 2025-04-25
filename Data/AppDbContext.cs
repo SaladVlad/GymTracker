@@ -16,11 +16,12 @@ namespace GymTrackerAPI.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            // Fluent API configurations can be added here
+
             modelBuilder.Entity<User>()
                 .HasMany(u => u.Workouts)
-                .WithOne(w => w.User)
-                .HasForeignKey(w => w.UserId);
+                .WithOne()
+                .HasForeignKey(w => w.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
     

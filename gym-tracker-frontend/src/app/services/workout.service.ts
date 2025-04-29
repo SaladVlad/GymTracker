@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { firstValueFrom } from 'rxjs'
-import { WeeklyProgressDto } from './types/weekly-progress.dto'
+import { WeeklyProgressDto } from '../types/weekly-progress.dto'
 
 @Injectable({
   providedIn: 'root'

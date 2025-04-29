@@ -1,7 +1,7 @@
 import { Component } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { WorkoutService } from '../workout.service'
-import { WeeklyProgressDto } from '../types/weekly-progress.dto'
+import { WorkoutService } from '../../services/workout.service'
+import { WeeklyProgressDto } from '../../types/weekly-progress.dto'
 import { FormsModule } from '@angular/forms'
 
 @Component({

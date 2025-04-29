@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { WorkoutService } from '../workout.service'
+import { WorkoutService } from '../../services/workout.service'
 import { FormsModule } from '@angular/forms'
 import { CommonModule } from '@angular/common'
 

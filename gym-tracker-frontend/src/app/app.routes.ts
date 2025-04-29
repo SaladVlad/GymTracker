@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router'
-import { LoginComponent } from './login/login.component'
-import { RegisterComponent } from './register/register.component'
-import { DashboardComponent } from './dashboard/dashboard.component'
-import { ProgressComponent } from './progress/progress.component'
+import { LoginComponent } from './features/auth/login/login.component'
+import { RegisterComponent } from './features/auth/register/register.component'
+import { DashboardComponent } from './features/dashboard/dashboard.component'
+import { ProgressComponent } from './features/progress/progress.component'
 import { AuthGuard } from './core/auth/auth.guard'
 
 export const routes: Routes = [

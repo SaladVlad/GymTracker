@@ -41,10 +41,13 @@ export class AuthService {
   }
 
   logout () {
-    localStorage.removeItem('token')
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('token')
+    }
   }
 
   isLoggedIn (): boolean {
+    if (typeof window === 'undefined') return false
     return !!localStorage.getItem('token')
   }
 }

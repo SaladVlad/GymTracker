@@ -6,8 +6,8 @@
         {
             var result = new List<(DateTime Start, DateTime End)>();
 
-            var firstDay = new DateTime(year, month, 1);
-            var lastDay = firstDay.AddMonths(1).AddDays(-1);
+            var firstDay = DateTime.SpecifyKind(new DateTime(year, month, 1), DateTimeKind.Utc);
+            var lastDay = DateTime.SpecifyKind(firstDay.AddMonths(1).AddDays(-1),DateTimeKind.Utc);
 
             var currentStart = firstDay;
 

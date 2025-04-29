@@ -1,0 +1,43 @@
+<h2>Add Workout</h2>
+<form (submit)="submitWorkout(); $event.preventDefault()">
+  <label>Type:</label>
+  <select [(ngModel)]="type" name="type">
+    <option *ngFor="let t of ['Cardio','Strength','Flexibility','Balance','Endurance','HIIT','CircuitTraining','Pilates','Yoga']">{{ t }}</option>
+  </select>
+  <br />
+
+  <label>Duration (minutes):</label>
+  <input type="number" [(ngModel)]="durationMinutes" name="durationMinutes" required />
+  <br />
+
+  <label>Calories Burned:</label>
+  <input type="number" [(ngModel)]="caloriesBurned" name="caloriesBurned" />
+  <br />
+
+  <label>Intensity (1-10):</label>
+  <input type="number" [(ngModel)]="intensity" name="intensity" min="1" max="10" />
+  <br />
+
+  <label>Fatigue (1-10):</label>
+  <input type="number" [(ngModel)]="fatigue" name="fatigue" min="1" max="10" />
+  <br />
+
+  <label>Notes:</label>
+  <input type="text" [(ngModel)]="notes" name="notes" />
+  <br />
+
+  <label>Date:</label>
+  <input type="date" [(ngModel)]="performedAt" name="performedAt" />
+  <br />
+
+  <button type="submit">Save Workout</button>
+</form>
+
+<hr />
+
+<h3>My Workouts</h3>
+<ul>
+  <li *ngFor="let w of workouts">
+    {{ w.performedAt }} - {{ w.type }} ({{ w.durationMinutes }} mins, Intensity: {{ w.intensity }}, Fatigue: {{ w.fatigue }})
+  </li>
+</ul>

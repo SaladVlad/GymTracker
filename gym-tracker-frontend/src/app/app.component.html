@@ -1,0 +1,15 @@
+<nav style="padding: 1rem; background: #f3f3f3;">
+  <ng-container *ngIf="auth.isLoggedIn(); else loggedOut">
+    <a routerLink="/dashboard" style="margin-right: 1rem;">Dashboard</a>
+    <a routerLink="/progress" style="margin-right: 1rem;">Progress</a>
+    <button (click)="logout()">Logout</button>
+  </ng-container>
+
+  <ng-template #loggedOut>
+    <a routerLink="/login" style="margin-right: 1rem;">Login</a>
+    <a routerLink="/register">Register</a>
+  </ng-template>
+</nav>
+
+
+<router-outlet></router-outlet>

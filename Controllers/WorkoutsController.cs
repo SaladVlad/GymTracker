@@ -61,6 +61,15 @@ namespace GymTrackerAPI.Controllers
             return Ok(workouts);
         }
 
+        [HttpGet("progress/month")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<WeeklyProgressDto>))]
+        public async Task<IActionResult> GetMonthlyProgress([FromQuery] int year, [FromQuery] int month)
+        {
+            var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            var progress = await _workoutService.GetAllWeeksProgressFromMonthAsync(userId, year, month);
+            return Ok(progress);
+        }
+
 
     }
 }

@@ -1,0 +1,37 @@
+<h2>Monthly Progress</h2>
+
+<label>Year:</label>
+<input type="number" [(ngModel)]="selectedYear" />
+
+<label>Month:</label>
+<input type="number" [(ngModel)]="selectedMonth" min="1" max="12" />
+
+<button (click)="fetchProgress()">Load Progress</button>
+
+<hr />
+
+<p *ngIf="loading">Loading...</p>
+<p *ngIf="error" style="color:red">{{ error }}</p>
+
+<table *ngIf="progressData.length > 0" border="1" cellpadding="8">
+  <thead>
+    <tr>
+      <th>Week #</th>
+      <th>Date Range</th>
+      <th>Total Duration (min)</th>
+      <th>Workout Count</th>
+      <th>Avg Intensity</th>
+      <th>Avg Fatigue</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let w of progressData">
+      <td>{{ w.weekIndex + 1 }}</td>
+      <td>{{ w.startDate | date }} → {{ w.endDate | date }}</td>
+      <td>{{ w.totalDuration }}</td>
+      <td>{{ w.workoutCount }}</td>
+      <td>{{ w.avgIntensity }}</td>
+      <td>{{ w.avgFatigue }}</td>
+    </tr>
+  </tbody>
+</table>

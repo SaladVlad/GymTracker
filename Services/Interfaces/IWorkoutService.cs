@@ -9,5 +9,8 @@ namespace GymTrackerAPI.Services.Interfaces
 
         List<(DateTime Start, DateTime End)> GetLogicalWeeks(int year, int month);
         Task<UserWorkoutsResponseDto?> GetWorkoutsByDateRangeAsync(Guid userId, DateTime startDate, DateTime endDate);
+
+        Task<List<WeeklyProgressDto>> GetAllWeeksProgressFromMonthAsync(Guid userId, int year, int month);
+
     }
 }

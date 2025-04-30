@@ -1,12 +1,16 @@
 <h2>Login</h2>
 <form (submit)="login(); $event.preventDefault()">
-  <label>Username:</label>
-  <input [(ngModel)]="username" name="username" required />
-  <br />
-  <label>Password:</label>
-  <input type="password" [(ngModel)]="password" name="password" required />
-  <br />
-  <button type="submit">Login</button>
-</form>
-<p style="color: red">{{ errorMessage }}</p>
+  <mat-form-field appearance="outline" style="width: 100%;">
+    <mat-label>Username</mat-label>
+    <input matInput [(ngModel)]="username" name="username" required />
+  </mat-form-field>
 
+  <mat-form-field appearance="outline" style="width: 100%;">
+    <mat-label>Password</mat-label>
+    <input matInput type="password" [(ngModel)]="password" name="password" required />
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">Login</button>
+
+  <p style="color: red;">{{ errorMessage }}</p>
+</form>

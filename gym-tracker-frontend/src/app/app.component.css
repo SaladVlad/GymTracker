@@ -1,0 +1,35 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  font-size: 16px;
+}
+
+mat-toolbar.navbar {
+  background-color: #ffffff; /* or keep color="primary" if preferred */
+  color: black;
+}
+
+mat-toolbar a[mat-button],
+mat-toolbar button[mat-button] {
+  color: black !important; /* force black on Material buttons */
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.navbar-title {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+a[mat-button],
+button[mat-button] {
+  color: white;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-left: 0.5rem;
+}

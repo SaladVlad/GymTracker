@@ -1,15 +1,17 @@
-<nav style="padding: 1rem; background: #f3f3f3;">
-  <ng-container *ngIf="auth.isLoggedIn(); else loggedOut">
-    <a routerLink="/dashboard" style="margin-right: 1rem;">Dashboard</a>
-    <a routerLink="/progress" style="margin-right: 1rem;">Progress</a>
-    <button (click)="logout()">Logout</button>
+<mat-toolbar class="navbar">
+  <span class="navbar-title">Gym Tracker</span>
+  <span class="spacer"></span>
+
+  <ng-container *ngIf="auth.isLoggedIn(); else guest">
+    <a mat-button routerLink="/dashboard">Dashboard</a>
+    <a mat-button routerLink="/progress">Progress</a>
+    <button mat-button (click)="logout()">Logout</button>
   </ng-container>
 
-  <ng-template #loggedOut>
-    <a routerLink="/login" style="margin-right: 1rem;">Login</a>
-    <a routerLink="/register">Register</a>
+  <ng-template #guest>
+    <a mat-button routerLink="/login">Login</a>
+    <a mat-button routerLink="/register">Register</a>
   </ng-template>
-</nav>
-
+</mat-toolbar>
 
 <router-outlet></router-outlet>

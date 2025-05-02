@@ -1,13 +1,13 @@
-<mat-card class="workout-card">
+<mat-card class="workout-card" [ngClass]="getCardClass()">
   <div class="workout-header">
-    <b>{{ workout.type }}</b>
-    <span>{{ workout.performedAt | date:'shortDate' }}</span>
+    <div class="workout-type">{{ workout.type }}</div>
+    <div class="workout-date">{{ workout.performedAt | date: 'MMM d, y' }}</div>
   </div>
-  <p>
-    Duration: {{ workout.durationMinutes }} min<br />
-    Intensity: {{ workout.intensity }} / 10<br />
-    Fatigue: {{ workout.fatigue }} / 10<br />
-    Calories: {{ workout.caloriesBurned }}<br />
-    <i *ngIf="workout.notes">Notes: {{ workout.notes }}</i>
-  </p>
+  <div class="workout-details">
+    <p>⏱ Duration: {{ workout.durationMinutes }} min</p>
+    <p>🔥 Intensity: {{ workout.intensity }} / 10</p>
+    <p>😩 Fatigue: {{ workout.fatigue }} / 10</p>
+    <p>🍽 Calories: {{ workout.caloriesBurned }}</p>
+    <p *ngIf="workout.notes"><i>📝 Notes: {{ workout.notes }}</i></p>
+  </div>
 </mat-card>

@@ -1,37 +1,38 @@
-<h2>Monthly Progress</h2>
+<mat-card class="progress-card">
+  <h2>Monthly Progress</h2>
 
-<label>Year:</label>
-<input type="number" [(ngModel)]="selectedYear" />
+  <div class="filters">
+    <mat-form-field appearance="outline">
+      <mat-label>Year</mat-label>
+      <input matInput type="number" [(ngModel)]="selectedYear" (ngModelChange)="onSelectionChange()" />
+    </mat-form-field>
 
-<label>Month:</label>
-<input type="number" [(ngModel)]="selectedMonth" min="1" max="12" />
+    <mat-form-field appearance="outline">
+      <mat-label>Month</mat-label>
+      <mat-select [(ngModel)]="selectedMonth" (selectionChange)="onSelectionChange()">
+        <mat-option *ngFor="let m of months" [value]="m.value">{{ m.label }}</mat-option>
+      </mat-select>
+    </mat-form-field>
 
-<button (click)="fetchProgress()">Load Progress</button>
+  </div>
 
-<hr />
+  <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+  <p *ngIf="error" class="error-text">{{ error }}</p>
 
-<p *ngIf="loading">Loading...</p>
-<p *ngIf="error" style="color:red">{{ error }}</p>
+  <div class="progress-grid">
+    <mat-card
+      *ngFor="let w of progressData"
+      class="week-card"
+      [ngStyle]="{ 'background': getIntensityGradient(w.avgIntensity) }"
+    >
+      <h3>Week {{ w.weekIndex + 1 }}</h3>
+      <p><strong>{{ w.startDate | date:'MMM d' }} → {{ w.endDate | date:'MMM d' }}</strong></p>
 
-<table *ngIf="progressData.length > 0" border="1" cellpadding="8">
-  <thead>
-    <tr>
-      <th>Week #</th>
-      <th>Date Range</th>
-      <th>Total Duration (min)</th>
-      <th>Workout Count</th>
-      <th>Avg Intensity</th>
-      <th>Avg Fatigue</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let w of progressData">
-      <td>{{ w.weekIndex + 1 }}</td>
-      <td>{{ w.startDate | date }} → {{ w.endDate | date }}</td>
-      <td>{{ w.totalDuration }}</td>
-      <td>{{ w.workoutCount }}</td>
-      <td>{{ w.avgIntensity }}</td>
-      <td>{{ w.avgFatigue }}</td>
-    </tr>
-  </tbody>
-</table>
+      <p>🕒 <strong>{{ w.totalDuration }} min</strong> total</p>
+      <p>🏋️ <strong>{{ w.workoutCount }}</strong> workouts</p>
+      <p>🔥 Intensity: <strong>{{ w.avgIntensity }}</strong></p>
+      <p>😮‍💨 Fatigue: <strong>{{ w.avgFatigue }}</strong></p>
+    </mat-card>
+  </div>
+
+</mat-card>

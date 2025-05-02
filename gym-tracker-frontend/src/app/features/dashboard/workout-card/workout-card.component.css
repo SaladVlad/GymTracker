@@ -1,10 +1,59 @@
+.workout-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.progress-card {
+  background-color: #5fffd7;
+  border-radius: 15px;
+  padding: 20px;
+  width: 250px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+  font-family: "Segoe UI", sans-serif;
+  color: #333;
+}
+
 .workout-card {
-  margin-bottom: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   padding: 1rem;
+  color: #000;
+
+  &.high-intensity {
+    background-color: #ffb3b3;
+  }
+
+  &.medium-intensity {
+    background-color: #ffe699;
+  }
+
+  &.low-intensity {
+    background-color: #a2f5c8;
+  }
 }
 
 .workout-header {
   display: flex;
   justify-content: space-between;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.workout-type {
   font-size: 1.1rem;
+}
+
+.workout-date {
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.workout-details p {
+  margin: 6px 0;
+  font-size: 0.95rem;
 }

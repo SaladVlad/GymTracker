@@ -43,7 +43,39 @@ export class AddWorkoutFormComponent {
   constructor (private dialogRef: MatDialogRef<AddWorkoutFormComponent>) {}
 
   save () {
-    this.addWorkout.emit({
+    const errors: string[] = []
+
+    if (this.durationMinutes <= 0) {
+      errors.push('Duration must be a positive number.')
+    }
+
+    if (this.caloriesBurned <= 0) {
+      errors.push('Calories burned must be a positive number.')
+    }
+
+    if (this.intensity < 1 || this.intensity > 10) {
+      errors.push('Intensity must be between 1 and 10.')
+    }
+
+    if (this.fatigue < 1 || this.fatigue > 10) {
+      errors.push('Fatigue must be between 1 and 10.')
+    }
+
+    if (this.notes.length > 512) {
+      errors.push('Notes cannot exceed 512 characters.')
+    }
+
+    if (this.performedAt > new Date()) {
+      errors.push('The performed date cannot be in the future.')
+    }
+
+    if (errors.length > 0) {
+      alert(errors.join('\n')) // Simple user feedback — improve with snackbar/toast if needed
+      return
+    }
+
+    // All checks passed
+    this.dialogRef.close({
       type: this.type,
       durationMinutes: this.durationMinutes,
       caloriesBurned: this.caloriesBurned,
@@ -52,6 +84,7 @@ export class AddWorkoutFormComponent {
       notes: this.notes,
       performedAt: this.performedAt.toISOString()
     })
+
     this.notes = ''
   }
 

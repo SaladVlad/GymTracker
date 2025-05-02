@@ -48,6 +48,30 @@ export class AuthService {
 
   isLoggedIn (): boolean {
     if (typeof window === 'undefined') return false
-    return !!localStorage.getItem('token')
+
+    const token = localStorage.getItem('token')
+    if (!token) return false
+
+    const payload = this.decodePayload(token)
+    if (!payload || !payload.exp) return false
+
+    const now = Math.floor(Date.now() / 1000) // current time in seconds
+    return payload.exp > now
+  }
+
+  isTokenExpired (token: string): boolean {
+    const payload = this.decodePayload(token)
+    if (!payload || !payload.exp) return true
+    return Math.floor(Date.now() / 1000) >= payload.exp
+  }
+
+  private decodePayload (token: string): any {
+    try {
+      const base64Payload = token.split('.')[1]
+      const payload = atob(base64Payload)
+      return JSON.parse(payload)
+    } catch {
+      return null
+    }
   }
 }

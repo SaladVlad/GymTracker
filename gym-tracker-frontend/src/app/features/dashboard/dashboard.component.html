@@ -1,4 +1,12 @@
 <button mat-raised-button color="primary" (click)="openAddWorkout()">+ New Workout</button>
 
 <h3>My Workouts</h3>
-<app-workout-card *ngFor="let w of workouts" [workout]="w" />
+<div class="workout-list-container">
+  <div class="workout-grid">
+    <app-workout-card
+      *ngFor="let workout of workouts"
+      [workout]="workout"
+    ></app-workout-card>
+  </div>
+</div>
+

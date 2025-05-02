@@ -6,23 +6,29 @@
         {
             var result = new List<(DateTime Start, DateTime End)>();
 
-            var firstDay = DateTime.SpecifyKind(new DateTime(year, month, 1), DateTimeKind.Utc);
-            var lastDay = DateTime.SpecifyKind(firstDay.AddMonths(1).AddDays(-1),DateTimeKind.Utc);
+            var firstOfMonth = DateTime.SpecifyKind(new DateTime(year, month, 1), DateTimeKind.Utc);
+            var lastOfMonth = DateTime.SpecifyKind(firstOfMonth.AddMonths(1).AddDays(-1), DateTimeKind.Utc);
 
-            var currentStart = firstDay;
+            var current = firstOfMonth;
+            int diff = (7 + ((int)current.DayOfWeek - 1)) % 7; // Monday = 1
+            current = current.AddDays(-diff);
 
-            while (currentStart <= lastDay)
+            while (current <= lastOfMonth)
             {
-                var currentEnd = currentStart.AddDays(6);
-                if (currentEnd > lastDay)
-                    currentEnd = lastDay;
+                var weekStart = current;
+                var weekEnd = current.AddDays(6);
 
-                result.Add((currentStart, currentEnd));
-                currentStart = currentEnd.AddDays(1);
+                // Clamp inside the actual month
+                var clampedStart = weekStart < firstOfMonth ? firstOfMonth : weekStart;
+                var clampedEnd = weekEnd > lastOfMonth ? lastOfMonth : weekEnd;
+
+                result.Add((clampedStart, clampedEnd));
+                current = current.AddDays(7);
             }
 
             return result;
         }
+
 
 
     }

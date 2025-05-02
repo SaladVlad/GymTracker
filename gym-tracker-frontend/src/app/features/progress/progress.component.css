@@ -1,0 +1,57 @@
+.progress-card {
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 800px;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.error-text {
+  color: red;
+  margin-top: 1rem;
+}
+
+table {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+mat-form-field {
+  flex: 1 1 200px;
+}
+
+.progress-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.week-card {
+  color: #212121;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+  backdrop-filter: blur(5px);
+}
+
+.week-card:hover {
+  transform: translateY(-4px);
+}
+
+.week-card h3 {
+  margin-top: 0;
+  font-size: 1.2rem;
+}
+
+.week-card p {
+  margin: 0.3rem 0;
+  font-family: "Roboto Mono", monospace;
+}

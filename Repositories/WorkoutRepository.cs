@@ -34,7 +34,8 @@ namespace GymTrackerAPI.Repositories
                     Fatigue = w.Fatigue,
                     Notes = w.Notes,
                     PerformedAt = w.PerformedAt
-                }).ToListAsync();
+                }).OrderByDescending(w => w.PerformedAt)
+                .ToListAsync();
 
             return new UserWorkoutsResponseDto
             {

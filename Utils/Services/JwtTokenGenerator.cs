@@ -1,12 +1,13 @@
 ﻿using GymTrackerAPI.Models;
+using GymTrackerAPI.Utils.Interfaces;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace GymTrackerAPI.Utils
+namespace GymTrackerAPI.Utils.Services
 {
-    public class JwtTokenGenerator
+    public class JwtTokenGenerator : IJwtTokenGenerator
     {
         private readonly IConfiguration _configuration;
         public JwtTokenGenerator(IConfiguration configuration)

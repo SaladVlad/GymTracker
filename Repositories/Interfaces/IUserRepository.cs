@@ -7,5 +7,7 @@ namespace GymTrackerAPI.Repositories.Interfaces
         Task<User?> GetUserByUsernameAsync(string username);
         Task<bool> UserExistsAsync(string username);
         Task CreateUserAsync(User user);
+
+        Task<bool> RemoveUserAsync(Guid userId);
     }
 }

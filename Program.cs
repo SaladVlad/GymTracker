@@ -3,7 +3,8 @@ using GymTrackerAPI.Repositories;
 using GymTrackerAPI.Repositories.Interfaces;
 using GymTrackerAPI.Services;
 using GymTrackerAPI.Services.Interfaces;
-using GymTrackerAPI.Utils;
+using GymTrackerAPI.Utils.Interfaces;
+using GymTrackerAPI.Utils.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -55,7 +56,8 @@ builder.Services.AddScoped<IWorkoutService, WorkoutService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IWorkoutRepository, WorkoutRepository>();
 
-builder.Services.AddSingleton<JwtTokenGenerator>();
+builder.Services.AddSingleton<IPasswordHasher, PasswordHasherService>();
+builder.Services.AddSingleton<IJwtTokenGenerator,JwtTokenGenerator>();
 
 var app = builder.Build();
 

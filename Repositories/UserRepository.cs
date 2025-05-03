@@ -25,6 +25,13 @@ namespace GymTrackerAPI.Repositories
             return await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
         }
 
+        public async Task<bool> RemoveUserAsync(Guid userId)
+        {
+            return await _context.Users
+                .Where(u => u.Id == userId)
+                .ExecuteDeleteAsync() > 0;
+        }
+
         public async Task<bool> UserExistsAsync(string username)
         {
             return await _context.Users.AnyAsync(u => u.Username == username);

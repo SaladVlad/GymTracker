@@ -2,7 +2,8 @@
 using GymTrackerAPI.Models;
 using GymTrackerAPI.Repositories.Interfaces;
 using GymTrackerAPI.Services.Interfaces;
-using GymTrackerAPI.Utils;
+using GymTrackerAPI.Utils.Interfaces;
+using GymTrackerAPI.Utils.Services;
 using System.Diagnostics;
 
 namespace GymTrackerAPI.Services
@@ -11,13 +12,15 @@ namespace GymTrackerAPI.Services
     public class AuthService : IAuthService
     {
         private readonly IUserRepository _userRepo;
-        private readonly JwtTokenGenerator _jwt;
+        private readonly IPasswordHasher _hasher;
+        private readonly IJwtTokenGenerator _jwt;
 
 
-        public AuthService(IUserRepository userRepo, JwtTokenGenerator jwt)
+        public AuthService(IUserRepository userRepo, IJwtTokenGenerator jwt, IPasswordHasher hasher)
         {
             _userRepo = userRepo;
             _jwt = jwt;
+            _hasher = hasher;
         }
 
 
@@ -25,7 +28,7 @@ namespace GymTrackerAPI.Services
         {
             var user = await _userRepo.GetUserByUsernameAsync(dto.Username);
             if (user == null) return null;
-            var valid = PasswordHasher.VerifyPasswordHash(dto.Password, user.PasswordHash, user.PasswordSalt);
+            var valid = _hasher.VerifyPasswordHash(dto.Password, user.PasswordHash, user.PasswordSalt);
             if (!valid) return null;
 
             return _jwt.GenerateToken(user);
@@ -38,7 +41,7 @@ namespace GymTrackerAPI.Services
             {
                 return null;
             }
-            PasswordHasher.CreatePasswordHash(dto.Password, out byte[] hash, out byte[] salt);
+            _hasher.CreatePasswordHash(dto.Password, out byte[] hash, out byte[] salt);
 
             var user = new User
             {
@@ -52,5 +55,13 @@ namespace GymTrackerAPI.Services
             return _jwt.GenerateToken(user);
         }
 
+        public async Task<bool?> RemoveUserAsync(Guid userId)
+        {
+            var user = _userRepo.GetUserByUsernameAsync(userId.ToString());
+            if (user == null) return null;
+            var result = await _userRepo.RemoveUserAsync(userId);
+            return result;
+
+        }
     }
 }

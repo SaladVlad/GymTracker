@@ -36,21 +36,21 @@ namespace GymTrackerAPI.Controllers
             return Ok(workouts);
         }
 
-        [HttpGet("weeks")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<WeekRangeDto>))]
-        public IActionResult GetWeekRanges([FromQuery] int year, [FromQuery] int month)
-        {
-            var weekRanges = _workoutService.GetLogicalWeeks(year, month)
-                .Select((w, i) => new WeekRangeDto
-                {
-                    Index = i,
-                    Start = w.Start,
-                    End = w.End
-                })
-                .ToList();
+        //[HttpGet("weeks")]
+        //[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<WeekRangeDto>))]
+        //public IActionResult GetWeekRanges([FromQuery] int year, [FromQuery] int month)
+        //{
+        //    var weekRanges = _workoutService.GetLogicalWeeks(year, month)
+        //        .Select((w, i) => new WeekRangeDto
+        //        {
+        //            Index = i,
+        //            Start = w.Start,
+        //            End = w.End
+        //        })
+        //        .ToList();
 
-            return Ok(weekRanges);
-        }
+        //    return Ok(weekRanges);
+        //}
 
         [HttpGet("range")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UserWorkoutsResponseDto))]

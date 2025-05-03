@@ -8,8 +8,7 @@ import { MatSelectModule } from '@angular/material/select'
 import { MatButtonModule } from '@angular/material/button'
 import { MatDatepickerModule } from '@angular/material/datepicker'
 import { MatNativeDateModule } from '@angular/material/core'
-import { MatDialogModule } from '@angular/material/dialog'
-import { MatDialogRef } from '@angular/material/dialog'
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 @Component({
@@ -39,11 +38,19 @@ export class AddWorkoutFormComponent {
   intensity = 5
   fatigue = 5
   notes = ''
-  performedAt: Date = new Date()
+  performedAtDate: Date = new Date()
+  performedAtTime: string = this.performedAtDate.toTimeString().slice(0, 5)
 
   constructor (private dialogRef: MatDialogRef<AddWorkoutFormComponent>) {}
 
-  save () {
+  // Extracts the hours and minutes from the time string
+  private parseTime (time: string): { hours: number; minutes: number } {
+    const [hours, minutes] = time.split(':').map(n => parseInt(n, 10))
+    return { hours, minutes }
+  }
+
+  // Validates the form inputs
+  private validateForm (): string[] {
     const errors: string[] = []
 
     if (this.durationMinutes <= 0) {
@@ -66,16 +73,29 @@ export class AddWorkoutFormComponent {
       errors.push('Notes cannot exceed 512 characters.')
     }
 
-    if (this.performedAt > new Date()) {
+    const { hours, minutes } = this.parseTime(this.performedAtTime)
+    const performed = new Date(this.performedAtDate)
+    performed.setHours(hours, minutes)
+
+    if (performed > new Date()) {
       errors.push('The performed date cannot be in the future.')
     }
 
+    return errors
+  }
+
+  save () {
+    const errors = this.validateForm()
+
     if (errors.length > 0) {
-      alert(errors.join('\n')) // Simple user feedback — improve with snackbar/toast if needed
+      alert(errors.join('\n'))
       return
     }
 
-    // All checks passed
+    const { hours, minutes } = this.parseTime(this.performedAtTime)
+    const performed = new Date(this.performedAtDate)
+    performed.setHours(hours, minutes)
+
     this.dialogRef.close({
       type: this.type.replace(' ', ''),
       durationMinutes: this.durationMinutes,
@@ -83,7 +103,7 @@ export class AddWorkoutFormComponent {
       intensity: this.intensity,
       fatigue: this.fatigue,
       notes: this.notes,
-      performedAt: this.performedAt.toISOString()
+      performedAt: performed.toISOString()
     })
 
     this.notes = ''

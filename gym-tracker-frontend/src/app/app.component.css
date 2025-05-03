@@ -1,8 +1,13 @@
 .navbar {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 0 1rem;
-  font-size: 16px;
+}
+
+.navbar-title {
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 mat-toolbar.navbar {
@@ -17,13 +22,18 @@ mat-toolbar button[mat-button] {
   text-transform: uppercase;
 }
 
-.navbar-title {
-  font-weight: bold;
-  font-size: 20px;
-}
-
 .spacer {
   flex: 1 1 auto;
+}
+
+.mobile-menu-button {
+  margin-left: auto;
+}
+
+.mobile-nav {
+  padding: 0;
+  background: white;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 a[mat-button],

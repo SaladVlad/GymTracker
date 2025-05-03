@@ -2,7 +2,8 @@
   <span class="navbar-title">Gym Tracker</span>
   <span class="spacer"></span>
 
-  <ng-container *ngIf="auth.isLoggedIn(); else guest">
+  <!-- Inline nav for wide screens -->
+  <ng-container *ngIf="auth.isLoggedIn() && isWideScreen">
     <a mat-button routerLink="/dashboard">Dashboard</a>
     <a mat-button routerLink="/progress">Progress</a>
     <button mat-button class="logout-button" (click)="logout()">
@@ -10,10 +11,33 @@
     </button>
   </ng-container>
 
-  <ng-template #guest>
+  <ng-container *ngIf="!auth.isLoggedIn() && isWideScreen">
     <a mat-button routerLink="/login">Login</a>
     <a mat-button routerLink="/register">Register</a>
-  </ng-template>
+  </ng-container>
+
+  <!-- Burger menu on mobile -->
+  <button
+    *ngIf="!isWideScreen"
+    mat-icon-button
+    (click)="mobileMenuOpen = !mobileMenuOpen"
+    class="mobile-menu-button"
+    aria-label="Toggle navigation menu"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
 </mat-toolbar>
+
+<mat-nav-list *ngIf="!isWideScreen && mobileMenuOpen" class="mobile-nav">
+  <ng-container *ngIf="auth.isLoggedIn(); else guest">
+    <a mat-list-item routerLink="/dashboard" (click)="mobileMenuOpen = false">Dashboard</a>
+    <a mat-list-item routerLink="/progress" (click)="mobileMenuOpen = false">Progress</a>
+    <a mat-list-item class="logout-button" (click)="logout(); mobileMenuOpen = false">Logout</a>
+  </ng-container>
+  <ng-template #guest>
+    <a mat-list-item routerLink="/login" (click)="mobileMenuOpen = false">Login</a>
+    <a mat-list-item routerLink="/register" (click)="mobileMenuOpen = false">Register</a>
+  </ng-template>
+</mat-nav-list>
 
 <router-outlet></router-outlet>

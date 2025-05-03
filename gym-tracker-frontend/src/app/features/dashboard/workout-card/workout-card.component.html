@@ -1,7 +1,9 @@
 <mat-card class="workout-card" [ngClass]="getCardClass()">
   <div class="workout-header">
     <div class="workout-type">{{ workout.type }}</div>
-    <div class="workout-date">{{ workout.performedAt | date: 'MMM d, y' }}</div>
+    <div class="workout-date">
+      {{ workout.performedAt | date: 'MMM d, y, HH:mm' }}
+    </div>
   </div>
   <div class="workout-details">
     <p>⏱ Duration: {{ workout.durationMinutes }} min</p>

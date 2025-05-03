@@ -5,11 +5,22 @@ import { CommonModule } from '@angular/common'
 import { WorkoutCardComponent } from './workout-card/workout-card.component'
 import { AddWorkoutFormComponent } from './add-workout-form/add-workout-form.component'
 import { MatDialog, MatDialogModule } from '@angular/material/dialog'
+import { MatDatepickerModule } from '@angular/material/datepicker'
+import { MatNativeDateModule } from '@angular/material/core'
+import { MatIconModule } from '@angular/material/icon'
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [FormsModule, CommonModule, WorkoutCardComponent, MatDialogModule],
+  imports: [
+    FormsModule,
+    CommonModule,
+    WorkoutCardComponent,
+    MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatIconModule
+  ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })

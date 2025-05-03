@@ -33,3 +33,21 @@ button[mat-button] {
   font-weight: 500;
   margin-left: 0.5rem;
 }
+
+.logout-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.75rem;
+}
+
+.logout-button mat-icon {
+  font-size: 18px;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.logout-button:hover {
+  background-color: #ff5252;
+  color: white;
+}

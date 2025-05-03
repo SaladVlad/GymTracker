@@ -10,6 +10,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker'
 import { MatNativeDateModule } from '@angular/material/core'
 import { MatDialogModule } from '@angular/material/dialog'
 import { MatDialogRef } from '@angular/material/dialog'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 @Component({
   selector: 'app-add-workout-form',
@@ -76,7 +77,7 @@ export class AddWorkoutFormComponent {
 
     // All checks passed
     this.dialogRef.close({
-      type: this.type,
+      type: this.type.replace(' ', ''),
       durationMinutes: this.durationMinutes,
       caloriesBurned: this.caloriesBurned,
       intensity: this.intensity,

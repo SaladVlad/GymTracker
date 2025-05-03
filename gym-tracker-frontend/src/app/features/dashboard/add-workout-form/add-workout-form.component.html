@@ -1,51 +1,48 @@
-<mat-card>
-  <h3>Add Workout</h3>
-  <form (submit)="save(); $event.preventDefault()">
-    <mat-form-field style="width: 100%;">
+<mat-card class="add-workout-card">
+  <h3 style="text-align: center;">Add Workout</h3>
+  <form (submit)="save(); $event.preventDefault()" class="add-workout-form">
+    <mat-form-field appearance="fill">
       <mat-label>Type</mat-label>
       <mat-select [(ngModel)]="type" name="type">
-        <mat-option *ngFor="let t of ['Cardio','Strength','HIIT','Yoga','Pilates']" [value]="t">{{ t }}</mat-option>
+        <mat-option *ngFor="let t of ['Cardio', 'Strength', 'Flexibility', 'Balance', 'Endurance', 'HIIT', 'Circuit Training', 'Pilates', 'Yoga']" [value]="t">{{ t }}</mat-option>
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field style="width: 100%;">
+    <mat-form-field appearance="fill">
       <mat-label>Duration (minutes)</mat-label>
       <input matInput type="number" [(ngModel)]="durationMinutes" name="duration" required />
     </mat-form-field>
 
-    <mat-form-field style="width: 100%;">
+    <mat-form-field appearance="fill">
       <mat-label>Calories Burned</mat-label>
       <input matInput type="number" [(ngModel)]="caloriesBurned" name="calories" required />
     </mat-form-field>
 
-    <mat-form-field style="width: 100%;">
+    <mat-form-field appearance="fill">
       <mat-label>Intensity (1–10)</mat-label>
       <input matInput type="number" [(ngModel)]="intensity" name="intensity" required />
     </mat-form-field>
 
-    <mat-form-field style="width: 100%;">
+    <mat-form-field appearance="fill">
       <mat-label>Fatigue (1–10)</mat-label>
       <input matInput type="number" [(ngModel)]="fatigue" name="fatigue" required />
     </mat-form-field>
 
-    <mat-form-field style="width: 100%;">
+    <mat-form-field appearance="fill">
       <mat-label>Notes</mat-label>
-      <input matInput [(ngModel)]="notes" name="notes" />
+      <textarea matInput rows="4" [(ngModel)]="notes" name="notes"></textarea>
     </mat-form-field>
 
-    <mat-form-field style="width: 100%;">
+    <mat-form-field appearance="fill">
       <mat-label>Date</mat-label>
       <input matInput [matDatepicker]="picker" [(ngModel)]="performedAt" name="performedAt" required />
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
-    <div style="display: flex; justify-content: space-between; gap: 1rem; margin-top: 1rem;">
+    <div class="button-row">
       <button mat-button (click)="closeDialog()">Cancel</button>
       <button mat-raised-button color="primary" type="submit">Save Workout</button>
     </div>
-
   </form>
-
-
 </mat-card>

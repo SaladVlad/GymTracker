@@ -70,7 +70,10 @@ Before you begin, ensure you have the following installed:
    dotnet run
    ```
 
-6. Run the frontend:
+   This will start up the back-end API. You can access the Swagger sheet at `http://localhost:5055/swagger/index.html` and take a look at the available API
+   endpoints.
+
+7. Run the frontend:
 
    ```bash
    cd ../gym-tracker-frontend
@@ -78,6 +81,8 @@ Before you begin, ensure you have the following installed:
    ```
 
    This will start the development server, and you can access the application at `http://localhost:4200`.
+
+
 
 ### Running Tests
 

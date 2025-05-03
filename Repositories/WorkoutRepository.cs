@@ -8,7 +8,7 @@ namespace GymTrackerAPI.Repositories
 {
     public class WorkoutRepository : IWorkoutRepository
     {
-        private readonly AppDbContext  _context;
+        private readonly AppDbContext _context;
         public WorkoutRepository(AppDbContext context)
         {
             _context = context;

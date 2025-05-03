@@ -3,8 +3,6 @@ using GymTrackerAPI.Models;
 using GymTrackerAPI.Repositories.Interfaces;
 using GymTrackerAPI.Services.Interfaces;
 using GymTrackerAPI.Utils.Interfaces;
-using GymTrackerAPI.Utils.Services;
-using System.Diagnostics;
 
 namespace GymTrackerAPI.Services
 {
@@ -37,7 +35,7 @@ namespace GymTrackerAPI.Services
 
         public async Task<string?> RegisterAsync(RegisterDto dto)
         {
-            if(await _userRepo.UserExistsAsync(dto.Username))
+            if (await _userRepo.UserExistsAsync(dto.Username))
             {
                 return null;
             }

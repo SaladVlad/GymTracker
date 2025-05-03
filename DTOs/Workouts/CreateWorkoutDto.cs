@@ -1,6 +1,4 @@
-﻿using GymTrackerAPI.Models;
-
-namespace GymTrackerAPI.DTOs.Workouts
+﻿namespace GymTrackerAPI.DTOs.Workouts
 {
     public class CreateWorkoutDto
     {

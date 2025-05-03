@@ -3,12 +3,8 @@ using GymTrackerAPI.Models;
 using GymTrackerAPI.Repositories.Interfaces;
 using GymTrackerAPI.Services;
 using GymTrackerAPI.Utils.Interfaces;
-using GymTrackerAPI.Utils.Services;
 using Moq;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace GymTrackerAPI.Tests.Services
 {
@@ -26,7 +22,7 @@ namespace GymTrackerAPI.Tests.Services
             _userRepoMock = new Mock<IUserRepository>();
             _jwtMock = new Mock<IJwtTokenGenerator>();
             _hasherMock = new Mock<IPasswordHasher>();
-            _authService = new AuthService(_userRepoMock.Object, _jwtMock.Object,_hasherMock.Object);
+            _authService = new AuthService(_userRepoMock.Object, _jwtMock.Object, _hasherMock.Object);
 
 
         }
@@ -48,7 +44,7 @@ namespace GymTrackerAPI.Tests.Services
             var result = await _authService.RegisterAsync(registerDto);
 
             // Assert
-            Assert.That(result,Is.EqualTo("fake-jwt-token"));
+            Assert.That(result, Is.EqualTo("fake-jwt-token"));
             _userRepoMock.Verify(r => r.CreateUserAsync(It.IsAny<User>()), Times.Once);
         }
 
@@ -101,7 +97,7 @@ namespace GymTrackerAPI.Tests.Services
             _userRepoMock.Setup(r => r.RemoveUserAsync(userId)).ReturnsAsync(true);
 
             var result = await _authService.RemoveUserAsync(userId);
-            Assert.That(result.Value,Is.EqualTo(true));
+            Assert.That(result.Value, Is.EqualTo(true));
         }
 
         [TearDown]

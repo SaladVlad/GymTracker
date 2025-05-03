@@ -22,6 +22,6 @@ namespace GymTrackerAPI.Utils
             }
             return true;
         }
-        
+
     }
 }

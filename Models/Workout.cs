@@ -8,7 +8,7 @@
         public int DurationMinutes { get; set; }
         public int CaloriesBurned { get; set; }
         public int Intensity { get; set; }
-        public int Fatigue { get; set; } 
+        public int Fatigue { get; set; }
         public string? Notes { get; set; } = null;
         public DateTime PerformedAt { get; set; }
     }

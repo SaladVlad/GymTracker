@@ -57,7 +57,7 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IWorkoutRepository, WorkoutRepository>();
 
 builder.Services.AddSingleton<IPasswordHasher, PasswordHasherService>();
-builder.Services.AddSingleton<IJwtTokenGenerator,JwtTokenGenerator>();
+builder.Services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
 
 var app = builder.Build();
 

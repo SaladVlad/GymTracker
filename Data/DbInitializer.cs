@@ -10,8 +10,9 @@ namespace GymTrackerAPI.Data
             if (!context.Users.Any())
             {
                 PasswordHasher.CreatePasswordHash("password", out var hash, out var salt);
-                var user = new User {
-                    Username = "demo" ,
+                var user = new User
+                {
+                    Username = "demo",
                     PasswordHash = hash,
                     PasswordSalt = salt,
                     Workouts = new List<Workout>()
